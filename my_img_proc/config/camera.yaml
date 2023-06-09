@@ -1,0 +1,26 @@
+image_width: 640
+image_height: 480
+camera_name: realsensed435i
+camera_matrix:
+  rows: 3
+  cols: 3
+  data: [618.1471 ,   0.     , 334.86355,
+           0.     , 619.8749 , 242.1743 ,
+           0.     ,   0.     ,   1.     ]
+distortion_model: plumb_bob
+distortion_coefficients:
+  rows: 1
+  cols: 5
+  data: [0.170811, -0.409068, -0.003645, 0.007765, 0.000000]
+rectification_matrix:
+  rows: 3
+  cols: 3
+  data: [1., 0., 0.,
+         0., 1., 0.,
+         0., 0., 1.]
+projection_matrix:
+  rows: 3
+  cols: 4
+  data: [626.5694 ,   0.     , 338.60581,   0.     ,
+           0.     , 632.15546, 240.44089,   0.     ,
+           0.     ,   0.     ,   1.     ,   0.     ]
