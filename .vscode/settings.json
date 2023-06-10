@@ -70,7 +70,9 @@
         "hash_map": "cpp",
         "hash_set": "cpp",
         "slist": "cpp",
-        "regex": "cpp"
+        "regex": "cpp",
+        "any": "cpp",
+        "strstream": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "cmake.sourceDirectory": "/home/umelab/UR_test/src/geometry2/tf2_geometry_msgs"
