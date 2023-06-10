@@ -15,7 +15,6 @@ find_package(catkin REQUIRED COMPONENTS
   sensor_msgs
   std_msgs
   realsense2_camera # realsense kai additional
-  mg400_bringup # mg400
   tf2_ros
   moveit_ros_planning_interface
   moveit_visual_tools
@@ -223,35 +222,49 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-add_executable(realsense_sub src/test_code/realsense_sub.cpp)
-target_link_libraries(realsense_sub  ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
-add_executable(aruco src/test_code/aruco.cpp)
+# Training for aruco marker
+add_executable(aruco src/test_code/arucoMarker/aruco.cpp)
 target_link_libraries(aruco  ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
-
-add_executable(aruco_generator src/test_code/aruco_generator.cpp)
+add_executable(aruco_generator src/test_code/arucoMarker/aruco_generator.cpp)
 target_link_libraries(aruco_generator ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
-add_executable(ur3_test src/test_code/ur3_test.cpp)
+# kai test -> trash
+add_executable(ur3_test src/test_code/kai_test/ur3_test.cpp)
 target_link_libraries(ur3_test ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
-
-add_executable(gripper_pub src/test_code/gripper_pub.cpp)
-target_link_libraries(gripper_pub ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
-
-add_executable(opencv_cap2 src/test_code/opencv_cap2.cpp)
+add_executable(realsense_sub src/test_code/kai_test/realsense_sub.cpp)
+target_link_libraries(realsense_sub  ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+add_executable(opencv_cap2 src/test_code/kai_test/opencv_cap2.cpp)
 target_link_libraries(opencv_cap2 ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} realsense2)
 
-add_executable(demo_img_proc src/test_code/demo_img_proc.cpp)
-target_link_libraries(demo_img_proc ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} realsense2)
+# for robotiq gripper
+add_executable(gripper_pub src/test_code/robotiq_gripper/gripper_pub.cpp)
+target_link_libraries(gripper_pub ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
 
-add_executable(demo_arm_gripper src/test_code/demo_arm_gripper.cpp)
+
+# demo for champion data
+add_executable(demo_img_proc src/test_code/demo/demo_img_proc.cpp)
+target_link_libraries(demo_img_proc ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} realsense2)
+add_executable(demo_arm_gripper src/test_code/demo/demo_arm_gripper.cpp)
 target_link_libraries(demo_arm_gripper ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} realsense2)
 
-add_executable(real_pub src/test_code/real_pub.cpp)
-target_link_libraries(real_pub ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} realsense2)
+# subscribe from realsense and publish 3dpoint
+add_executable(pixelToPoint src/test_code/pixelToPoint.cpp)
+target_link_libraries(pixelToPoint ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} realsense2)
+add_executable(ur_moveit_command_controller src/test_code/ur_moveit_command_controller.cpp)
+target_link_libraries(ur_moveit_command_controller ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} realsense2)
 
-add_executable(real_pub_controller src/test_code/real_pub_controller.cpp)
-target_link_libraries(real_pub_controller ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} realsense2)
+# calc pca 
+add_executable(pca src/test_code/PCA/pca.cpp)
+target_link_libraries(pca ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} realsense2)
+
+# hsv
+add_executable(hsv src/test_code/hsvCheck.cpp)
+target_link_libraries(hsv ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} realsense2)
+
+# realsense image save
+add_executable(realsense_image_saver src/test_code/realsense_image_saver.cpp)
+target_link_libraries(realsense_image_saver ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} realsense2)
 
 # python
 install(PROGRAMS scripts/Robotiq2FGripperRtuNode.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
