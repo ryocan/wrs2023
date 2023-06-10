@@ -20,7 +20,23 @@
         <arg name="use_tool_communication" value="false"/>
     </include>
 
-    <!-- moveit_planning_execution : Univeresal_Robots_ROS_Driver/ur_robot_driver/launch/ur3_bringup.launch -->
+    <!-- moveit_planning_execution : universal_robot/ur3_moveit_config/launch/moveit_planning_execution.launch -->
+    <arg name="sim" default="false" />
+    <arg name="debug" default="false" />
+    <remap if="$(arg sim)" from="/scaled_pos_joint_traj_controller/follow_joint_trajectory" to="/eff_joint_traj_controller/follow_joint_trajectory"/>
+    <include file="$(find ur3_moveit_config)/launch/move_group.launch">
+        <arg name="debug" default="$(arg debug)" />
+    </include>
 
+    <!-- moveit_rviz : universal_robot/ur3_moveit_config/launch/moveit_rviz.launch -->
+    <arg name="debug" default="false" />
+    <arg unless="$(arg debug)" name="launch_prefix" value="" />
+    <arg     if="$(arg debug)" name="launch_prefix" value="gdb --ex run --args" />
+    <arg name="config" default="" />
+    <arg unless="$(eval config=='')" name="command_args" value="-d $(arg config)" />
+    <arg     if="$(eval config=='')" name="command_args" value="-d $(find ur3_moveit_config)/launch/moveit.rviz"/>
+    <node name="$(anon rviz)" launch-prefix="$(arg launch_prefix)" pkg="rviz" type="rviz" respawn="false"
+            args="$(arg command_args)" output="screen">
+    </node>
 
 </launch>
