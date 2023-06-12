@@ -2,7 +2,7 @@
 画像処理とUR3の制御をするpkg
 
 ## launch
-### ur3関連
+### UR3
 <!-- 下記を実行すればUR3のbringup, moveit, rvizが可能になる -->
 ```
 roslaunch my_img_proc ur3.launch
@@ -20,6 +20,13 @@ roslaunch ur3_moveit_config moveit_rviz.launch
 ``` -->
 
 ### 画像処理関連
+realsenseとyolactのlaunch
+```
+roslaunch my_img_proc rs_yolact.launch
+```
+
+### Robotiq
+robotiqのlaunch
 ```
 roslaunch my_img_proc rs_yolact.launch
 ```
