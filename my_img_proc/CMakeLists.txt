@@ -266,6 +266,11 @@ target_link_libraries(hsv ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} realsense2)
 add_executable(realsense_image_saver src/test_code/realsense_image_saver.cpp)
 target_link_libraries(realsense_image_saver ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} realsense2)
 
+# command_test
+add_executable(robotiq_usb_command src/robotiq_usb_command.cpp)
+target_link_libraries(robotiq_usb_command ${catkin_LIBRARIES} ${OpenCV_LIBRARIES} realsense2)
+
+
 # python
 install(PROGRAMS scripts/Robotiq2FGripperRtuNode.py DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
