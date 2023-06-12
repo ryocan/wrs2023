@@ -79,8 +79,8 @@
 
     <!-- yolact : yolact_ros/launch/yolact_ros.launch -->
     <node pkg="yolact_ros" type="yolact_ros" name="yolact_ros" output="screen">
-    <!-- here, you can change wright's model -->
-    <param name="model_path" value="$(find yolact_ros)/scripts/yolact/weights/yolact_base_2023_0223.pth" /> 
+    <!-- here, you can change wright's model : yolact_base_2023_0223.pth-->
+    <param name="model_path" value="$(find yolact_ros)/scripts/yolact/weights/yolact_base_2023_0223.pth"/> 
     <param name="image_topic" value="/camera/color/image_raw" />
     <param name="use_compressed_image" value="False" />
     <param name="publish_visualization" value="True" />
