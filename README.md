@@ -1,5 +1,5 @@
 ## 自作pkgについて
-自作したpkgは[my_img_proc](https://github.com/ryocan/fcsc2023/tree/main/my_img_proc)になっている
+自作したpkgは[wrs_fcsc_2023](https://github.com/ryocan/wrs2023/tree/main/wrs_fcsc_2023)になっている
 
 ## 他pkgのcloneについて
 このサイトをただgit cloneしても，おそらく他から参照したpkgはインストールできない
