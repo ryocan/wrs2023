@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="port_urg" default="/dev/serial/by-id/usb-Hokuyo_Data_Flex_for_USB_URG-Series_USB_Driver-if00" />
+  <arg name="port_robot" default="/dev/serial/by-id/usb-T-frog_project_T-frog_Driver-if00" />
+  <arg name="robot_param" />
+
+  <node pkg="tf" type="static_transform_publisher" name="stp_laser" args="0 0 0 0 0 0 base_link laser 100" />
+
+<!--   <node pkg="ypspur_ros" type="ypspur_ros" name="ypspur_ros" respawn="true">
+    <param name="compatible" value="1" />
+    <param name="port" value="$(arg port_robot)" />
+    <param name="param_file" value="$(arg robot_param)" />
+  </node>
+ -->
+
+
+
+
+<!--   <arg name="model" default="$(find fcsc)/urdf/pmt_fcsc.urdf" />
+  <arg name="rvizconfig" default="$(find pmt)/rviz/pmt_map.rviz" />
+  <arg name="joy" default="false" />
+  
+  <group if="$(arg joy)">
+    <node name="joy_node"   pkg="joy" type="joy_node" />
+    <node name="basic_twist_publisher" pkg="basic_lecture" type="basic_twist_publisher"/>
+  </group>
+  <node name="vis_robot_sim" pkg="vis_lecture" type="vis_robot_sim"/>
+
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/> -->
+
+  <arg name="model" default="$(find fcsc)/urdf/pmt_urg_fcsc.urdf"/>
+  <arg name="gui" default="true" />
+  <arg name="rvizconfig" default="$(find pmt)/rviz/pmt_map.rviz" />
+
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+
+  <node if="$(arg gui)" name="joint_state_publisher" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
+  <node unless="$(arg gui)" name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+
+
+  <node pkg="urg_node" type="urg_node" name="urg_node">
+    <param name="serial_port" value="$(arg port_urg)" />
+  </node>
+
+<!--   <node pkg="gmapping" type="slam_gmapping" name="mapper">
+    <param name="maxUrange" value="4.0" />
+    <param name="xmax" value="20.0" />
+    <param name="ymax" value="20.0" />
+    <param name="xmin" value="-20.0" />
+    <param name="ymin" value="-20.0" />
+  </node>
+ -->
+<!--   <node pkg="mouse_teleop" type="mouse_teleop.py" name="mouse_teleop">
+    <remap from="mouse_vel" to="cmd_vel" />
+  </node> -->
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+</launch>

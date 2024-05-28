@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- rover -->
+  <node pkg="mecanumrover_samples" type="pub_odom" name="pub_odom" />
+
+    <!-- <node pkg="tf" type="static_transform_publisher" name="stp_laser" args="0.199 0 0.08 0 0 0 base_link lidar_link 1" />
+   -->
+<node pkg="tf" type="static_transform_publisher" name="stp_laser" args="0.5 0 0.07 0 0 0 base_link lidar_link 1" />
+
+  <arg name="port_urg" default="/dev/ttyACM0" />
+  <node pkg="urg_node" type="urg_node" name="urg_node">
+       <param name="serial_port" value="$(arg port_urg)" />
+       <param name="frame_id" value="lidar_link" />       <param name="angle_min" value="-1.37" /> 
+       <param name="angle_max" value="1.37" />  
+　 </node>
+
+  <!-- <include file="$(find fcsc)/launch/velodyne16.launch"/> -->
+
+  <!-- velodyne_filter -->
+  <!-- <node pkg="pmt" type="velodyne_filter" name="velodyne_filter"/> -->
+
+
+</launch>

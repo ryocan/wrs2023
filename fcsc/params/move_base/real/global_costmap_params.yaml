@@ -1,0 +1,52 @@
+global_costmap:
+
+  # Plugins
+  plugins:
+    - {name: static_layer,    type: "costmap_2d::StaticLayer"}
+    #- {name: obstacle_layer,  type: "costmap_2d::VoxelLayer"}
+    #- {name: virtual_layer,   type: "virtual_costmap_layer::VirtualLayer"}
+    - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+    #- {name: add_layer,   type: "simple_layer_namespace::AddLayer"}
+
+  # Coordinate frame and tf parameters
+  global_frame: map
+  robot_base_frame: base_link
+  transform_tolerance: 5.0  # default 0.2
+
+  # Rate parameters
+  update_frequency: 5.0   # default 5.0
+  publish_frequency: 5.0  # default 0.0
+
+  # Map management parameters
+  rolling_window: false            # default false
+  always_send_full_costmap: false  # default false
+  track_unknown_space: true        # default false
+  width: 20                        # default 10
+  height: 20                       # default 10
+  resolution: 0.1                  # default 0.05
+  origin_x: 0.0                    # default 0.0
+  origin_y: 0.0                    # default 0.0
+
+  #footprint: [[-0.10, 0.23], [0.45, 0.23], [0.45, -0.23], [-0.10, -0.23]]
+  footprint: [[-0.08, 0.21], [0.43, 0.21], [0.43, -0.21], [-0.08, -0.21]]
+
+
+  # Static Map Layer
+  static_layer:
+    unknown_cost_value: -1       # default -1
+    lethal_cost_threshold: 100   # default 100
+    map_topic: /map
+    first_map_only: true         # default false
+    subscribe_to_updates: false  # default false
+    track_unknown_space: true    # default true
+    use_maximum: false           # default false
+    trinary_costmap: true        # default true
+    
+  # Inflation Map Layer
+  inflation_layer:
+     inflation_radius: 0.15
+
+  # Virtual Layer
+  #virtual_layer:
+    #zone_topics: [/move_base/global_costmap/virtual_layer/zone]
+    #obstacle_topics: [/move_base/global_costmap/virtual_layer/obstacles]

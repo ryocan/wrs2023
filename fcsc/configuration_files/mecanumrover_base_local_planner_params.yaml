@@ -1,0 +1,25 @@
+# base local planner params for MECANUMROVER
+
+TrajectoryPlannerROS:
+  max_vel_x: 0.3
+  min_vel_x: -0.3
+  max_vel_y: 0.3
+  #min_vel_y: 0.03
+  min_vel_y: -0.3
+  max_vel_theta: 0.8
+  #min_vel_theta: 0.08
+  min_vel_theta: 0.1
+  min_in_place_vel_theta: 0.08
+ 
+  acc_lim_theta: 4.0
+  acc_lim_x: 1.0
+  acc_lim_y: 1.0
+
+  yaw_goal_tolerance: 0.75
+  xy_goal_tolerance: 0.15
+ 
+  holonomic_robot: true
+ 
+  meter_scoring: true
+
+

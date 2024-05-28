@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- rover -->
+  <param name="robot_description" textfile="$(find fcsc)/urdf/pmt_fcsc.urdf"/>
+
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+
+  <include file="$(find fcsc)/launch/velodyne16.launch"/>
+
+  <!-- velodyne_filter -->
+  <node pkg="pmt" type="velodyne_filter" name="velodyne_filter"/>
+
+
+</launch>

@@ -1,0 +1,10 @@
+urgの設定
+
+min_rangeとmax_range
+前が0[rad]
+前を基準に半時計まわりが+~[rad]
+前を基準に時計まわりが-~[rad]
+
+cluster_counter
+前がX_point
+左がY_point

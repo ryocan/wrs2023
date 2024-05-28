@@ -72,7 +72,17 @@
         "slist": "cpp",
         "regex": "cpp",
         "any": "cpp",
-        "strstream": "cpp"
+        "strstream": "cpp",
+        "forward_list": "cpp",
+        "valarray": "cpp",
+        "csetjmp": "cpp",
+        "csignal": "cpp",
+        "charconv": "cpp",
+        "codecvt": "cpp",
+        "cuchar": "cpp",
+        "future": "cpp",
+        "scoped_allocator": "cpp",
+        "shared_mutex": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled",
     "cmake.sourceDirectory": "/home/umelab/UR_test/src/geometry2/tf2_geometry_msgs"

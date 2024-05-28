@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<launch>
+
+ <!-- odom form rover -->
+  <node pkg="mecanumrover_samples" type="pub_odom" name="pub_odom" />
+  
+ <!-- position of LRF (Laser Range Finder) -->
+  <!--you can change position of LRF args="x y z y p r" -->
+  <node pkg="tf" type="static_transform_publisher" name="stp_laser" args="0.5 0 0.3 0 0 0 base_link lidar_link 1" />
+  
+ <!-- LRF node -->
+  <arg name="port_urg" default="/dev/ttyACM0" />
+  <node pkg="urg_node" type="urg_node" name="urg_node">
+       <param name="serial_port" value="$(arg port_urg)" />
+       <param name="frame_id" value="lidar_link" />       <param name="angle_min" value="-1.37" /> 
+       <param name="angle_max" value="1.37" />  
+　 </node>
+
+ <!-- gmapping -->
+   <node pkg="gmapping" type="slam_gmapping" name="mapper">
+     <param name="maxUrange" value="32.0" type="double" />
+     <param name="delta" value="0.05" />
+     <param name="xmax" value="30" type="double" />
+     <param name="ymax" value="30" type="double" />
+     <param name="xmin" value="-30" type="double" />
+     <param name="ymin" value="-30" type="double" />
+   </node>
+
+  <!-- rviz -->
+     <!--<arg name="model" default="$(find fcsc)/urdf/pmt_urg_fcsc.urdf"/>
+     <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />-->
+     <node pkg="rviz" type="rviz" args="-d '$(find fcsc)/rviz/fcsc_robo.rviz'" name="visualizer" respawn="true" />
+   
+ </launch>

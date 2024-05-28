@@ -1,0 +1,11 @@
+diff_drive_controller:
+  type: "diff_drive_controller/DiffDriveController"
+  left_wheel: 'leftWheel'
+  right_wheel: 'rightWheel'
+  pose_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+  twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+  publish_rate: 20.0  # default 50.0
+  cmd_vel_timeout: 0.5  # default 0.5
+  base_frame_id: base_link  # default base_link
+  enable_odom_tf: true  # default true
+  odom_frame_id: /odom  # default /odom

@@ -1,0 +1,50 @@
+ls -lah /dev/serial/by-id
+
+
+
+roverをjoystickで動かす
+①roslaunch fcsc rover_joy.launch
+②rosrun rosserial_python serial_node.py /dev/ttyUSB0 _baud:=115200
+
+gmapping
+①roslaunch fcsc rover_joy.launch
+②rosrun rosserial_python serial_node.py /dev/ttyUSB0 _baud:=115200
+③roslaunch fcsc fcsc_gmapping.launch
+④rosrun map_server map_saver -f ~/catkin_ws/src/fcsc/maps/test11
+
+rosrun map_server map_saver -f ~/my_map
+
+
+nav(rover_nav.launch 地図変更)(service用)
+①roscore
+②rosrun rosserial_python serial_node.py /dev/ttyUSB0 _baud:=115200
+③roslaunch fcsc rover_nav.launch
+④rosrun costmap_visual
+⑤goal_setのdefineを設定(costmap_visual.csvから)
+⑥catkin build fcsc
+
+
+①roscore
+②rosrun rosserial_python serial_node.py /dev/ttyUSB0 _baud:=115200
+③rosrun fcsc cliant
+④roslaunch fcsc rover_nav.launch
+
+
+
+
+
+nav(rover_nav_c.launch 地図変更)(picking用)
+①roscore
+②rosrun rosserial_python serial_node.py /dev/ttyUSB0 _baud:=115200
+③roslaunch fcsc rover_nav_c.launch
+④rosrun costmap_visual
+⑤goal_set_cのdefineを設定(costmap_visual.csvから)
+⑥catkin build fcsc
+
+
+①roscore
+②rosrun rosserial_python serial_node.py /dev/ttyUSB0 _baud:=115200
+③roslaunch fcsc rover_nav_c.launch
+
+rostopic pub -1 /input_flag std_msgs/Int8 "data: 1" 
+rostopic pub -r 10 /flag std_msgs/String "data: '0'" 

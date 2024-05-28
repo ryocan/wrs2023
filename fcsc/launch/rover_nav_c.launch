@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- clustering -->
+ <node name="cluster_counter" pkg="fcsc" type="cluster_counter" />
+
+  <!-- goal set -->
+  <node name="goal_set_c" pkg="fcsc" type="goal_set_c"  output="screen"/> 
+    <!-- <node name="goal_set_c" pkg="fcsc" type="goal_set_c" />  -->
+  <node name="custmer_flag_pub" pkg="fcsc" type="custmer_flag_pub"/>
+
+  <!-- Arguments -->
+  <arg name="map_file" default="$(find fcsc)/maps/fcscpr1.yaml"/>
+    <!-- <arg name="map_file" default="$(find fcsc)/maps/p4.yaml"/> -->
+  <arg name="open_rviz" default="true"/>
+
+  <!--rover-->
+  <include file="$(find fcsc)/launch/rover.launch"/>
+
+  <!-- Map server -->
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+  <!-- AMCL -->
+  <include file="$(find fcsc)/launch/rover_amcl.launch"/>
+
+  <!-- move_base -->
+  <include file="$(find fcsc)/launch/move_base_fcsc.launch"/>
+
+  <!-- rviz -->
+  <node pkg="rviz" type="rviz" args="-d '$(find mecanumrover_samples)/configuration_files/rviz/navigation.rviz'" name="visualizer" respawn="true" />
+</launch>

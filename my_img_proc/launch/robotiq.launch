@@ -1,8 +1,0 @@
-<lauch>
-    <!-- robotiq allow usb connection -->
-    <node name="robotiq_usb_command" pkg="my_img_proc" type="robotiq_usb_command" required="true" output="screen">
-
-    <!-- robotiq connect : robotiq/robootiq_2f_gripper_control/nodes/Robotiq2FGripperRtuNode (revised a little bit)-->
-    <node name="robotiq2FGripper" pkg="robotiq_2f_gripper_control" type="Robotiq2FGripperRtuNode.py">
-
-</lauch>

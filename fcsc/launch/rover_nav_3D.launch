@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- <node  pkg="rosserial_python" type="serial_node.py" name="serial_node" args="tcp"/> -->
+
+  <!-- PMT -->
+  <include file="$(find fcsc)/launch/rover.launch"/>
+
+  <!--hdl_localization-->
+  <include file="$(find fcsc)/launch/hdl_localization_fcsc.launch"/>
+
+
+  <!-- move_base -->
+  <include file="$(find fcsc)/launch/move_base_fcsc.launch"/>
+
+
+  <!-- rviz -->
+　<node pkg="rviz" type="rviz" name="rviz" args="-d $(find pmt)/rviz/pmt_nav_koji.rviz"/>
+
+
+</launch>
