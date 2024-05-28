@@ -1,0 +1,8 @@
+<launch>
+    <!-- robotiq allow usb connection -->
+    <!-- <node name="robotiq_usb_command" pkg="wrs_fcsc_2023" type="robotiq_usb_command" required="true" output="screen"/> -->
+
+    <!-- robotiq connect : wrs_fcsc_2023/scripts/Robotiq2FGripperRtuNode.py-->
+    <node name="robotiq2FGripper" pkg="robotiq_2f_gripper_control" type="Robotiq2FGripperRtuNode.py"/>
+
+</launch>
